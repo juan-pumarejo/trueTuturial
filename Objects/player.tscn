@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://qsr5njjkufos"]
+
+[ext_resource type="Texture2D" uid="uid://bbg5htm4gaeae" path="res://Assets/player.png" id="1_xoarg"]
+
+[sub_resource type="GDScript" id="GDScript_q68ka"]
+script/source = "extends CharacterBody2D
+class_name Player
+
+
+@export var SPEED = 300.0
+
+func _physics_process(delta: float) -> void:
+	var directionHor := Input.get_axis(\"ui_left\", \"ui_right\")
+	if directionHor:
+		velocity.x = directionHor * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	var directionVer := Input.get_axis(\"ui_up\", \"ui_down\")
+	if directionVer:
+		velocity.y = directionVer * SPEED
+	else:
+		velocity.y = move_toward(velocity.y, 0, SPEED)
+	move_and_slide()
+
+func die():
+	modulate.a = 0
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr1m1"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.25, 1.25)
+script = SubResource("GDScript_q68ka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xoarg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cr1m1")

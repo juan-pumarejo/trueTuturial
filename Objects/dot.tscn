@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddyxelpg0sbwy"]
+
+[ext_resource type="Script" path="res://Objects/dot.gd" id="1_foxd3"]
+[ext_resource type="Texture2D" uid="uid://dwhuxwxqqyjt7" path="res://Assets/dot.png" id="1_vaket"]
+
+[sub_resource type="Curve2D" id="Curve2D_p7ddm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 612, 284, 0, 0, 0, 0, 877, 285, 0, 0, 0, 0, 612, 284)
+}
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8eoq"]
+
+[node name="dot" type="Path2D"]
+curve = SubResource("Curve2D_p7ddm")
+script = ExtResource("1_foxd3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(612, 284)
+rotation = 0.00377357
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D"]
+texture = ExtResource("1_vaket")
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D/Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_d8eoq")
+
+[connection signal="body_entered" from="PathFollow2D/Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

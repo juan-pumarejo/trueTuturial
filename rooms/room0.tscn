@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3vbcfkh5hw7n"]
+
+[ext_resource type="Script" path="res://rooms/button.gd" id="1_yxl15"]
+
+[node name="Room0" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -25.0
+offset_right = 24.0
+offset_bottom = 15.0
+scale = Vector2(3.84357, 2.17701)
+color = Color(0.828737, 0.767981, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(61, 19)
+zoom = Vector2(7.52, 7.52)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -1.0
+offset_top = -17.0
+offset_right = 112.0
+offset_bottom = 6.0
+text = "You lose lmao"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 98.0
+offset_bottom = 44.0
+text = "Play again"
+script = ExtResource("1_yxl15")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

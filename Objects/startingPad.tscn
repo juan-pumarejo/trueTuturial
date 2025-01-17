@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw8txyrgl20q6"]
+
+[ext_resource type="Texture2D" uid="uid://m57mj6qm84mg" path="res://Assets/tiles.png" id="1_omqmk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbxob"]
+atlas = ExtResource("1_omqmk")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5owmf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbxob")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StartingPad" type="Marker2D"]
+
+[node name="Marker2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5owmf")
